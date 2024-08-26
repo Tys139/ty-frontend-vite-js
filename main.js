@@ -262,8 +262,8 @@ tl.to("#canvas1-wrapper", { x: -1080, duration:20, ease: "circ.out" })
   //.to("#canvas2-wrapper", { y: 1300, duration:10, ease: "circ.out" })
   .to("#canvas3-wrapper", { y: -600, duration: 10, ease: "circ.out" })
   .to("#canvas4-wrapper", { y: -50, duration: 10, ease: "circ.out" })
-  //const canvasWrappers = document.querySelectorAll('.canvas-wrapper:not(#canvas4-wrapper)');
-  const canvasWrappers = document.querySelectorAll('.canvas-wrapper');
+  const canvasWrappers = document.querySelectorAll('.canvas-wrapper:not(#canvas4-wrapper)');
+  //const canvasWrappers = document.querySelectorAll('.canvas-wrapper');
   canvasWrappers.forEach(wrapper => {
       wrapper.addEventListener('mouseenter', () => {  
         console.log(wrapper);
