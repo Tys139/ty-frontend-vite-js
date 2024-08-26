@@ -14,6 +14,8 @@
             background: linear-gradient(45deg, #000000, #000000, #000000);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
+            zoom: 100%;
+
         }
 
         @keyframes gradientBG {
@@ -54,6 +56,7 @@
         }
 
         #canvas2-wrapper {
+          background-color: rgba(0, 0, 0, 0.8); /* Non-transparent background */
             z-index: 10;
             left: -60px;
             top: 10px;
@@ -64,20 +67,21 @@
         }
 
         #canvas3-wrapper {
+          background-color: rgba(0, 0, 0, 0.8); /* Non-transparent background */
             z-index: 0;
             left: -20px;
             top: 30px;
             border: 2px solid rgb(245, 240, 240);
             box-shadow: 0 0 10px rgba(0,0,0,0.3);
-            background-color: transparent;
+            
             
         }
 
         
         #canvas4-wrapper {
-            z-index: 0;
-            left: -20px;
-            top: 800px;
+            z-index: -50;
+            left: 15px;
+            top: 50px;
             border: 2px solid rgb(245, 240, 240);
             box-shadow: 0 0 10px rgba(0,0,0,0.3);
             background-color: transparent;
@@ -195,7 +199,7 @@
 
 .chat-input {
     position: absolute;
-    bottom: 20px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 40px);
@@ -245,6 +249,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: black;
 }
 
 .text3 {
@@ -361,7 +366,7 @@
               <div class="card">
                 <div class="content">
                   <div class="front">Data Engineer/Full Stack Developer</div>
-                  <div class="back">Python<br>Apache Airflow<br> Dagster<br>JavaScript<br>Django <br> FastAPI <br> Rocket.rs <br> SQL <br> Shell Script</div>
+                  <div class="back">Python<br>JavaScript<br>Django <br> FastAPI <br> Rocket.rs <br> SQL <br> Shell Script</div>
                 </div>
               </div>
               <div class="card">
@@ -384,8 +389,8 @@
               </div>
               <div class="card">
                 <div class="content">
-                  <div class="front">Integration Platform</div>
-                  <div class="back">Celigo <br> Workato</div>
+                  <div class="front">Data Orchestration/Integration Platform</div>
+                  <div class="back"></b>Apache Airflow <br> Dagster <br> Celigo <br> Workato</div>
                 </div>
               </div>
             </div>
@@ -396,7 +401,7 @@
         </div>
         <div id="canvas4-wrapper" class="canvas-wrapper">
           <div class="chat-container">
-            <select id="character-select" style="position: absolute; top: 10px; right: 10px;">
+            <select id="character-select" style="position: absolute; top: 10px; right: 33px;">
               <option value="">Select a Model</option>
             </select>
             <div id="scrollable-content" class="chat-messages">

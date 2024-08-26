@@ -22,8 +22,8 @@ function getAuthorizationHeader() {
 function createScene(canvas, color) {
     const scene = new THREE.Scene();
     //const camera = new THREE.PerspectiveCamera(500, 1, canvas1.width/ canvas1.height, 1000);
-    
-    const aspectRatio = canvas1.width / canvas1 .height;
+    console.log(canvas1.width / canvas1.height)
+    const aspectRatio = 2.01;
     const frustumSize = 60; 
     const camera = new THREE.OrthographicCamera(
         -frustumSize * aspectRatio / 2,  // Left
@@ -261,10 +261,12 @@ tl.to("#canvas1-wrapper", { x: -1080, duration:20, ease: "circ.out" })
   //.to("#canvas1-wrapper", { x: -1200, duration: 30, ease: "circ.out" })
   //.to("#canvas2-wrapper", { y: 1300, duration:10, ease: "circ.out" })
   .to("#canvas3-wrapper", { y: -600, duration: 10, ease: "circ.out" })
-  .to("#canvas4-wrapper", { y: -790, duration: 10, ease: "circ.out" })
-  const canvasWrappers = document.querySelectorAll('.canvas-wrapper:not(#canvas4-wrapper)');
+  .to("#canvas4-wrapper", { y: -50, duration: 10, ease: "circ.out" })
+  //const canvasWrappers = document.querySelectorAll('.canvas-wrapper:not(#canvas4-wrapper)');
+  const canvasWrappers = document.querySelectorAll('.canvas-wrapper');
   canvasWrappers.forEach(wrapper => {
       wrapper.addEventListener('mouseenter', () => {  
+        console.log(wrapper);
           gsap.to(wrapper, { rotationX: 10, rotationY: 10, duration: 0.3, ease: "power1.inOut" });
       });
 
