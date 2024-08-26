@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>👋 Ty </title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 500vh;
+            width: 100%;
+            overflow-x: hidden;
+            background: linear-gradient(45deg, #000000, #000000, #000000);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+
+        #container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1000px;
+            height: 500px;
+            
+        }
+
+        .canvas-wrapper {
+            position: absolute;
+            width: 1000px;
+            height: 500px;
+            top: 0;
+            left: 0;
+            border-radius: 25px;
+            overflow: hidden;
+            transition: 300ms linear all;
+        }
+
+        #canvas1-wrapper {
+            z-index: 20;
+            left: -100px;
+            top: -10px;
+            border: 2px solid rgb(242, 238, 238);
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            background-color: transparent;
+            
+        }
+
+        #canvas2-wrapper {
+            z-index: 10;
+            left: -60px;
+            top: 10px;
+            border: 2px solid rgb(245, 242, 242);
+            box-shadow: 0 0 10px rgba(245, 242, 242, 0.3);
+            background-color: transparent;
+            
+        }
+
+        #canvas3-wrapper {
+            z-index: 0;
+            left: -20px;
+            top: 30px;
+            border: 2px solid rgb(245, 240, 240);
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            background-color: transparent;
+            
+        }
+
+        
+        #canvas4-wrapper {
+            z-index: 0;
+            left: -20px;
+            top: 800px;
+            border: 2px solid rgb(245, 240, 240);
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            background-color: transparent;
+            
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+            border-radius: 25px;
+        }
+        @font-face {
+            font-family: 'MyCustomFont';
+            src: url('font/ty_font.json') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .canvas-wrapper:hover {
+            transform: rotateX(10deg) rotateY(10deg); /* Tilt the canvas on hover */
+        }
+
+        #scroll-text {
+            position: fixed;
+            top: -35px;
+            right: 10px;
+            background-color: rgba(6, 6, 6, 0.7);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+           /* Hidden by default */
+        }
+
+        #scrollable-content {
+            height: 2000px; /* Make the content inside the div longer than the div itself */
+            background-color: #060606;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        .chat-container {
+  max-width: 1100px;
+  height: 10;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+}
+
+.chat-messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding-bottom: 60px; /* Add space for chat input */
+}
+
+.message {
+  max-width: 70%;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  border-radius: 20px;
+  color: white;
+  clear: both;
+}
+
+.assistant {
+  float: left;
+  background-color: #007bff;
+}
+
+.user {
+  float: right;
+  background-color: #28a745;
+}
+
+.chat-input {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 580px;
+  display: flex;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.chat-input textarea {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px; /* Increased from 5px to 15px for a rounder appearance */
+  resize: none;
+}
+
+.chat-input button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+#scrollable-section {
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    overflow-y: auto;
+    position: relative; /* Add this */
+}
+
+.chat-input {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 580px;
+    display: flex;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px; /* Added this line for rounded edges */
+}
+
+/* Custom Scrollbar */
+#scrollable-section::-webkit-scrollbar {
+    width: 12px;
+}
+
+#scrollable-section::-webkit-scrollbar-track {
+    background: rgba(240, 240, 240, 0.8);
+    border-radius: 10px;
+}
+
+#scrollable-section::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+    border: 3px solid rgba(240, 240, 240, 0.8);
+}
+
+#scrollable-section::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.text2 {
+  position: relative;
+  text-align: center;
+}
+
+
+
+.lotto-image {
+  max-width: 100%;
+  height: auto;
+  margin: 20px 0;
+}
+
+#canvas3-wrapper {
+  background-color: rgba(0, 0, 0, 0.8); /* Non-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text3 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lottie-container {
+  display: block;
+  margin: 0 auto;
+}
+.text2 {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.card {
+  width: 100%;
+  height: 200px;
+  perspective: 500px;
+}
+
+.content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+.card:hover .content {
+  transform: rotateY(180deg);
+}
+
+.front,
+.back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: black; /* Set background to black */
+  color: white; /* Set text color to white */
+  text-align: center;
+  font-size: 20px;
+  border-radius: 15px; /* Rounded corners */
+  border: 2px solid white; /* White border */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+}
+
+.back {
+  background: #000412;
+  color: rgb(246, 245, 249);
+  transform: rotateY(180deg);
+}
+
+.chat-header {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+}
+
+.chat-dropdown {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: white;
+  font-size: 14px;
+}
+
+    </style>
+    <script type="module" src="main.js"></script>
+</head>
+<body>
+    <div id="container">
+        <div id="canvas3-wrapper" class="canvas-wrapper">
+          <div class="text3">
+            <a href="https://www.linkedin.com/in/tyash" target="_blank" class="lottie-container">
+              <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+              <dotlottie-player src="https://lottie.host/91fbc217-71d0-4364-8822-e761f88ce873/QsCBc5gdzn.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+            </a>
+          </div>
+        </div>
+        <div id="canvas2-wrapper" class="canvas-wrapper">
+          <div class="text2">
+            <div class="card-container">
+              <div class="card">
+                <div class="content">
+                  <div class="front">Certifications</div>
+                  <div class="back">SAFe6 Certified Product Owner <br>
+                  HubSpot Revenue Operations Certification <br>
+                    Certified Kubernetes Application Developer (CKAD) <br>
+                     Azure Administrator Associate</div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="content">
+                  <div class="front">Data Engineer/Full Stack Developer</div>
+                  <div class="back">Python<br>Apache Airflow<br> Dagster<br>JavaScript<br>Django <br> FastAPI <br> Rocket.rs <br> SQL <br> Shell Script</div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="content">
+                  <div class="front">Cloud Infrastructure</div>
+                  <div class="back">Azure <br> OpenShift Container <br>Shuttle.rs</div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="content">
+                  <div class="front">Reconciliation/Revenue Recognition Apps</div>
+                  <div class="back">SmartStream TLM <br> Zuora Revenue RevPro </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="content">
+                  <div class="front">CRM/ERP</div>
+                  <div class="back">Salesforce <br>NetSuite<br> ERPNext </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="content">
+                  <div class="front">Integration Platform</div>
+                  <div class="back">Celigo <br> Workato</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="canvas1-wrapper" class="canvas-wrapper">
+            <canvas id="canvas1"></canvas>
+        </div>
+        <div id="canvas4-wrapper" class="canvas-wrapper">
+          <div class="chat-container">
+            <select id="character-select" style="position: absolute; top: 10px; right: 10px;">
+              <option value="">Select a Model</option>
+            </select>
+            <div id="scrollable-content" class="chat-messages">
+              <div class="message assistant">
+                <p>Hello! I am GoodGodzilla, thank you for visiting Yash's website, Connect with him via LinkedIn (just scroll up!). Click start, you have limited request and will reset after 7 hours.</p>
+              </div>
+            </div>
+            <div class="chat-input">
+              <textarea disabled placeholder="Press start..." ></textarea>
+              <button id="start-button">Start</button>
+            </div>
+          </div>
+        </div>
+        </div>
+    </div>
+    <div id="scroll-text"> Tathagat Yash, Toronto, Canada🍁</div>
+    
+</body>
+</html>
