@@ -435,7 +435,7 @@ console.log(testresponse)
   } catch (error) {
     console.error('Error retrieving JWT token:', error);
   }
- await testAuth()
+ await testAuth()}
 async function getCharacters() {
 
     try {
