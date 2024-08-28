@@ -420,7 +420,7 @@ async function getJwtToken() {
     console.error('Error retrieving JWT token:', error);
   }
 }
-async function getJwtToken() {
+async function testAuth() {
   try {
  const testresponse = await axios.get(apiLink+'/test_auth', {
       headers: {
@@ -428,13 +428,14 @@ async function getJwtToken() {
       'Content-Type': 'application/json'
        }
  });  
+   
   
 console.log('test_auth')
 console.log(testresponse)
   } catch (error) {
     console.error('Error retrieving JWT token:', error);
   }
-
+ await testAuth()
 async function getCharacters() {
 
     try {
