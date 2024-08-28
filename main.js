@@ -6,7 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 import axios from 'axios';
 gsap.registerPlugin(ScrollTrigger);
-
+import { inject } from "@vercel/analytics"
 
 
 let apiLink=`https://ty-backend.shuttleapp.rs`
