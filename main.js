@@ -427,7 +427,7 @@ async function getJwtToken() {
       'Content-Type': 'application/json'
        }
  });
-console.log(testresponse)
+console.log(JSON.stringify(testresponse))
 async function getCharacters() {
 
     try {
