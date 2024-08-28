@@ -421,7 +421,7 @@ async function getJwtToken() {
   }
 }
 
- const testresponse = await axios.post(apiLink+'/test_auth', payload, {
+ const testresponse = await axios.post(apiLink+'/test_auth', {
       headers: {
        Authorization: `Bearer ${jwtToken}`,
       'Content-Type': 'application/json'
