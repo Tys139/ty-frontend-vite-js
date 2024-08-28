@@ -436,7 +436,7 @@ console.log(testresponse)
     console.error('Error retrieving JWT token:', error);
   }
  }
-await testAuth()
+
 async function getCharacters() {
 
     try {
@@ -528,7 +528,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   
 
   await getJwtToken();
-
+await testAuth();
   startButton.addEventListener('click', async function() {
     if (startButton.textContent === 'Start') {
       // Fetch characters from the API
