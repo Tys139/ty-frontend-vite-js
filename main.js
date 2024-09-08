@@ -93,7 +93,7 @@ const fragmentShader3 = `
   const float majorLineFrequency = 5.0;
   const float minorLineFrequency = 2.0;
   const vec4 gridColor = vec4(0.5);
-  const float scale = 5.0;
+  const float scale = 2.5;
   const vec4 lineColor = vec4(0.25, 0.5, 1.0, 1.0);
   const float minLineWidth = 0.02;
   const float maxLineWidth = 0.3;
@@ -102,12 +102,12 @@ const fragmentShader3 = `
   const float lineFrequency = 0.2;
   const float warpSpeed = 0.2 * overallSpeed;
   const float warpFrequency = 0.5;
-  const float warpAmplitude = 1.0;
+  const float warpAmplitude = .5;
   const float offsetFrequency = 0.5;
-  const float offsetSpeed = 1.33 * overallSpeed;
+  const float offsetSpeed = 1.22 * overallSpeed;
   const float minOffsetSpread = 0.6;
-  const float maxOffsetSpread = 2.0;
-  const int linesPerGroup = 10;
+  const float maxOffsetSpread = 1.0;
+  const int linesPerGroup = 15;
 
   const vec4 bgColor1 = lineColor * 0.1;
   const vec4 bgColor2 = lineColor - vec4(1.0, 1.0, 1.0, 1.0);
@@ -266,7 +266,7 @@ tl.to("#canvas1-wrapper", { x: -1080, duration:20, ease: "circ.out" })
   //const canvasWrappers = document.querySelectorAll('.canvas-wrapper');
   canvasWrappers.forEach(wrapper => {
       wrapper.addEventListener('mouseenter', () => {  
-        console.log(wrapper);
+       // console.log(wrapper);
           gsap.to(wrapper, { rotationX: 10, rotationY: 10, duration: 0.3, ease: "power1.inOut" });
       });
 
@@ -339,12 +339,12 @@ async function getAIResponse(userMessage) {
     // }
     
     const responseData = await response.json();
-    console.log(responseData)
+   // console.log(responseData)
     // Assuming the API returns the assistant's message in the 'content' field
     // of the first choice in the 'choices' array
     return responseData.messages[0];
   } catch (error) {
-    console.error('Error:', error);
+   // console.error('Error:', error);
     throw error; // Re-throw the error to be handled by the caller
   }
 }
@@ -354,12 +354,12 @@ sendButton.addEventListener('click', async () => {
   if (userMessage) {
       addMessage(userMessage, true);
       userInput.value = '';
-      console.log(userMessage)
+     // console.log(userMessage)
       try {
           const aiResponse = await getAIResponse(userMessage);
           addMessage(aiResponse);
       } catch (error) {
-          console.error('Error:', error);
+        //  console.error('Error:', error);
           addMessage('Sorry, I encountered an error. Please try again.');
       }
   }
@@ -389,14 +389,14 @@ async function getLocationInfo() {
 
 
      cLocation = locationResponse.data;
-    console.log()
-    console.log('Location Data:', cLocation);
-    console.log(typeof cLocation);
-    console.log('Location Data 2 :', apiLink+`/get_location_endpoint/${ip}`);
+
+ //   console.log('Location Data:', cLocation);
+   // console.log(typeof cLocation);
+   // console.log('Location Data 2 :', apiLink+`/get_location_endpoint/${ip}`);
 
     // You can use the locationData here to update your UI or perform other actions
   } catch (error) {
-    console.error('Error fetching location information:', error);
+    //console.error('Error fetching location information:', error);
   }
 }
 
@@ -415,7 +415,7 @@ async function getJwtToken() {
     const response = await axios.get(apiLink+'/get_token');
     jwtToken = response.data.token;
     console.log('JWT Token retrieved successfully');
-    console.log(jwtToken)
+   // console.log(jwtToken)
   } catch (error) {
     console.error('Error retrieving JWT token:', error);
   }
@@ -445,7 +445,7 @@ async function getCharacters() {
           Authorization: `Bearer ${jwtToken}`
         }
       });
-      console.log(response.data.models[0].id)
+     // console.log(response.data.models[0].id)
       if (cLocation) {
         await getFunFactAboutLocation('llama3-8b-8192'); // Using the first character as default
       }
