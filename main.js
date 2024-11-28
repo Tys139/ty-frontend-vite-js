@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 
-let apiLink=`https://ty-backend.shuttleapp.rs`
+let apiLink=`https://ty-backend-wtcq.shuttle.app`
 //let apiLink=`http://127.0.0.1:8000`
 
 // Function to use the token for subsequent calls
